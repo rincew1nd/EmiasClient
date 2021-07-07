@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmiasClient.API", "EmiasClient.API\EmiasClient.API.csproj", "{A0092FBC-28AC-4B82-BE7B-AA3329B21DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailClient.Test", "EmailClient.Test\EmailClient.Test.csproj", "{81FE0C47-619B-4BE5-9DD3-B3AD6F61E96F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmiasClient.Application", "EmiasClient.Application\EmiasClient.Application.csproj", "{D9D5EEC2-985F-470C-ADE0-7F4B8EECB57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmiasClient.Scheduler", "EmiasClient.Scheduler\EmiasClient.Scheduler.csproj", "{F1E6B9CD-ECD7-4711-8D43-FC2391350867}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0092FBC-28AC-4B82-BE7B-AA3329B21DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0092FBC-28AC-4B82-BE7B-AA3329B21DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0092FBC-28AC-4B82-BE7B-AA3329B21DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0092FBC-28AC-4B82-BE7B-AA3329B21DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81FE0C47-619B-4BE5-9DD3-B3AD6F61E96F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81FE0C47-619B-4BE5-9DD3-B3AD6F61E96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81FE0C47-619B-4BE5-9DD3-B3AD6F61E96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81FE0C47-619B-4BE5-9DD3-B3AD6F61E96F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D5EEC2-985F-470C-ADE0-7F4B8EECB57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D5EEC2-985F-470C-ADE0-7F4B8EECB57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D5EEC2-985F-470C-ADE0-7F4B8EECB57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D5EEC2-985F-470C-ADE0-7F4B8EECB57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E6B9CD-ECD7-4711-8D43-FC2391350867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E6B9CD-ECD7-4711-8D43-FC2391350867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E6B9CD-ECD7-4711-8D43-FC2391350867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E6B9CD-ECD7-4711-8D43-FC2391350867}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,52 @@
+### OS directories
+.Spotlight-V100
+.Trashes
+
+### OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+Desktop.ini
+
+### IDE directories
+.vs
+.vscode
+.idea
+
+### IDE files
+*.suo
+*.csproj.user
+*.xproj.user
+*.DotSettings.user
+*.userprefs
+*.pubxml
+
+### VCS files
+*.vssscc
+*.csproj.vspscc
+
+### .NET files
+project.lock.json
+
+### Temp directories
+[Bb]in
+[Oo]bj
+[Tt]mp
+packages
+.publish
+.deploy
+.logs
+
+### Temp files
+*.log
+*.nuget.cache
+
+### Full path
+/deps/*
+/samples/*
+/logs/*
+/tmp/*
+/bin/*
+
+### Personal configuration
+/EmailClient.Test/appsettings.json
