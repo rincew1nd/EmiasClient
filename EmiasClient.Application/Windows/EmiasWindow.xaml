@@ -1,0 +1,41 @@
+﻿<Window x:Class="EmiasClient.Application.Windows.EmiasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmiasClient.Application.Windows"
+        mc:Ignorable="d"
+        Title="Emias" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label>Номер полиса</Label>
+            <TextBox x:Name="OmsNumber" Text="{Binding OmsNumber, Mode=TwoWay}" Width="130"/>
+            <Label>Дата рождения</Label>
+            <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label>Специальность</Label>
+            <ListBox ItemsSource="{Binding Specialities}"
+                     SelectedValue="{Binding SelectedSpeciality}" 
+                     SelectedValuePath="Code"
+                     DisplayMemberPath="Name"/>
+            <Label>Время записи (от)</Label>
+            
+            <Label>Время записи (до)</Label>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2">
+            <TextBlock x:Name="Logs" Text="{Binding Logs}"/>
+        </ScrollViewer>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="UpdateData" Click="UpdateData_click" Content="Обновить данные"/>
+            <Button x:Name="StartJob" Click="StartJob_click" Content="{Binding ButtonText, Mode=OneWay}"/>
+        </StackPanel>
+    </Grid>
+</Window>

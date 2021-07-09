@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EmiasClient.API\EmiasClient.API.csproj" />
+      <ProjectReference Include="..\EmiasClient.Scheduler\EmiasClient.Scheduler.csproj" />
     </ItemGroup>
 
 </Project>

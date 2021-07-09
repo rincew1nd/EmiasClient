@@ -50,3 +50,4 @@ packages
 
 ### Personal configuration
 /EmailClient.Test/appsettings.json
+/Application/*

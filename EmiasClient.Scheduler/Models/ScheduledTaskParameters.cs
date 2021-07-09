@@ -63,5 +63,15 @@ namespace EmiasClient.Scheduler.Models
         /// Искать только указанных докторов
         /// </summary>
         public long[] DoctorIds { get; set; }
+        
+        /// <summary>
+        /// Создавать запись при первой же возможности
+        /// </summary>
+        public bool CreateRecord { get; set; }
+        
+        /// <summary>
+        /// Издавать звук при появлении свободных мест
+        /// </summary>
+        public bool ToneNotification { get; set; }
     }
 }

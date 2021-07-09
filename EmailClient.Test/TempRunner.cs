@@ -30,15 +30,15 @@ namespace EmailClient.Test
                 Name = "Test",
                 OmsNumber = _omsNumber,
                 Birthday = _birthDate,
-                SpecialityId = "2011",
+                SpecialityId = "112",
                 //LpuIds = new[] { 8299143654, 10000254 },
                 //DoctorIds = new[] { 10008173L },
                 MinTimeSpan = new TimeSpan(2, 0, 0),
-                MaxTimeSpan = new TimeSpan(30, 0, 0),
+                MaxTimeSpan = new TimeSpan(90, 0, 0),
                 MinAppointmentTime = new TimeSpan(9, 0, 0),
                 MaxAppointmentTime = new TimeSpan(14, 0, 0)
-            });
-            await Task.Delay(new TimeSpan(1, 0, 0));
+            }, (log) => Console.WriteLine(log));
+            await Task.Delay(new TimeSpan(8, 0, 0));
         }
     }
 }

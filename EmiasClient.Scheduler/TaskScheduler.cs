@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using EmiasClient.Scheduler.Models;
 
 namespace EmiasClient.Scheduler
@@ -16,32 +17,45 @@ namespace EmiasClient.Scheduler
             _tasks = new Dictionary<Guid, TaskRunner>();
         }
 
-        public void ScheduleTask(ScheduledTaskParameters taskParameters)
+        public void ScheduleTask(ScheduledTaskParameters taskParameters, Action<string> logAction)
         {
             if (_tasks.ContainsKey(taskParameters.Id))
             {
                 throw new InvalidOperationException("Задача уже запланирована");
             }
             
-            var task = new TaskRunner(taskParameters);
+            var task = new TaskRunner(taskParameters, logAction);
             _tasks.Add(taskParameters.Id, task);
             
             _taskScheduler.RemoveTask(taskParameters.Id.ToString());
             _taskScheduler.ScheduleCronTask(
                 taskParameters.Id.ToString(),
-                "* * * * *",//"*/5 * * * *",
+                "* * * * *",
                 async () => await task.RunTask()
             );
+            
+            logAction($"[{DateTime.Now.ToString()}] Отслеживание мест запущено");
         }
 
-        public bool StopTask(Guid id)
+        public bool StopTask(Guid id, Action<string> logAction)
         {
             if (_tasks.ContainsKey(id))
             {
                 _tasks.Remove(id);
-                return _taskScheduler.RemoveTask(id.ToString());
+                var result = _taskScheduler.RemoveTask(id.ToString());
+                if (result)
+                {
+                    logAction($"[{DateTime.Now.ToString()}] Отслеживание мест остановлено");
+                    return true;
+                }
+                else
+                {
+                    logAction($"[{DateTime.Now.ToString()}] Не удалось остановить отслеживание мест");
+                    return false;
+                }
             }
-            throw new InvalidOperationException($"Задача с идентификатором {id.ToString()} не найдена");
+            logAction($"Задача с идентификатором {id.ToString()} не найдена");
+            return false;
         }
 
         private void LogException(Exception ex)
