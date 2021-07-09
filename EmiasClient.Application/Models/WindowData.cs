@@ -14,10 +14,7 @@ namespace EmiasClient.Application.Models
         private string _logs;
         public string Logs
         {
-            get
-            {
-                return _logs;
-            }
+            get => _logs;
             set
             {
                 _logs = value;
@@ -28,10 +25,7 @@ namespace EmiasClient.Application.Models
         private string _buttonText;
         public string ButtonText
         {
-            get
-            {
-                return _buttonText;
-            }
+            get => _buttonText;
             set
             {
                 _buttonText = value;
@@ -42,10 +36,7 @@ namespace EmiasClient.Application.Models
         private string _omsNumber;
         public string OmsNumber
         {
-            get
-            {
-                return _omsNumber;
-            }
+            get => _omsNumber;
             set
             {
                 _omsNumber = value;
@@ -56,10 +47,7 @@ namespace EmiasClient.Application.Models
         private DateTime _birthdate;
         public DateTime BirthDate
         {
-            get
-            {
-                return _birthdate;
-            }
+            get => _birthdate;
             set
             {
                 _birthdate = value;
@@ -70,14 +58,77 @@ namespace EmiasClient.Application.Models
         private string _selectedSpeciality;
         public string SelectedSpeciality
         {
-            get
-            {
-                return _selectedSpeciality;
-            }
+            get => _selectedSpeciality;
             set
             {
                 _selectedSpeciality = value;
                 OnNotifyPropertyChanged("SelectedSpeciality");
+            }
+        }
+        
+        private DateTime _minAppointmentTime;
+        public DateTime MinAppointmentTime
+        {
+            get => _minAppointmentTime;
+            set
+            {
+                _minAppointmentTime = value;
+                OnNotifyPropertyChanged("MinAppointmentTime");
+            }
+        }
+        
+        private DateTime _maxAppointmentTime;
+        public DateTime MaxAppointmentTime
+        {
+            get => _maxAppointmentTime;
+            set
+            {
+                _maxAppointmentTime = value;
+                OnNotifyPropertyChanged("MaxAppointmentTime");
+            }
+        }
+        
+        private DateTime _minTimeSpan;
+        public DateTime MinTimeSpan
+        {
+            get => _minTimeSpan;
+            set
+            {
+                _minTimeSpan = value;
+                OnNotifyPropertyChanged("MinTimeSpan");
+            }
+        }
+        
+        private DateTime _maxTimeSpan;
+        public DateTime MaxTimeSpan
+        {
+            get => _maxTimeSpan;
+            set
+            {
+                _maxTimeSpan = value;
+                OnNotifyPropertyChanged("MaxTimeSpan");
+            }
+        }
+        
+        private bool _createRecord;
+        public bool CreateRecord
+        {
+            get => _createRecord;
+            set
+            {
+                _createRecord = value;
+                OnNotifyPropertyChanged("CreateRecord");
+            }
+        }
+        
+        private bool _toneNotification;
+        public bool ToneNotification
+        {
+            get => _toneNotification;
+            set
+            {
+                _toneNotification = value;
+                OnNotifyPropertyChanged("ToneNotification");
             }
         }
 

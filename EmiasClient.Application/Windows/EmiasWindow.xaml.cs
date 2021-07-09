@@ -29,9 +29,12 @@ namespace EmiasClient.Application.Windows
         public EmiasWindow()
         {
             InitializeComponent();
+            
             _data = new WindowData();
-            _data.Specialities = new ObservableCollection<SpecialityInfo>() { new SpecialityInfo() { Name = "asd" } };
             this.DataContext = _data;
+            _data.Specialities = new ObservableCollection<SpecialityInfo>();
+            SelectParametrization.Visibility = Visibility.Hidden;
+            StartJob.IsEnabled = false;
             
             InitializeEmiasApi();
         }
@@ -60,18 +63,18 @@ namespace EmiasClient.Application.Windows
                     new ScheduledTaskParameters()
                     {
                         Id = _taskId,
-                        Name = "Test",
-                        OmsNumber = "",
-                        Birthday = new DateTime(1111,11,11),
-                        SpecialityId = "112",
+                        Name = "Запись",
+                        OmsNumber = _data.OmsNumber,
+                        Birthday = _data.BirthDate,
+                        SpecialityId = _data.SelectedSpeciality,
                         //LpuIds = new[] { 8299143654, 10000254 },
                         //DoctorIds = new[] { 10008173L },
-                        MinTimeSpan = new TimeSpan(1, 0, 0),
-                        //MaxTimeSpan = new TimeSpan(90, 0, 0),
-                        MinAppointmentTime = new TimeSpan(11, 0, 0),
-                        MaxAppointmentTime = new TimeSpan(22, 0, 0),
-                        CreateRecord = false,
-                        ToneNotification = true
+                        MinTimeSpan = _data.MinTimeSpan.TimeOfDay,
+                        MaxTimeSpan = _data.MaxTimeSpan.TimeOfDay,
+                        MinAppointmentTime = _data.MinAppointmentTime.TimeOfDay,
+                        MaxAppointmentTime = _data.MaxAppointmentTime.TimeOfDay,
+                        CreateRecord = _data.CreateRecord,
+                        ToneNotification = _data.ToneNotification
                     }, LogAction
                 );
                 _data.ButtonText = "Остановить";
@@ -83,18 +86,31 @@ namespace EmiasClient.Application.Windows
         {
             if (!Regex.IsMatch(_data.OmsNumber??"", @"\d{15}"))
             {
+                SelectParametrization.Visibility = Visibility.Hidden;
+                StartJob.IsEnabled = false;
                 LogAction("Неверный номер полиса");
                 return;
             }
+            
             var specialities = await _client.GetSpecialitiesInfoAsync(new GetSpecialitiesInfoRequest()
             {
                 Param = new OmsData(_data.OmsNumber, _data.BirthDate)
             });
+            if (specialities.Error != null)
+            {
+                SelectParametrization.Visibility = Visibility.Hidden;
+                StartJob.IsEnabled = false;
+                LogAction(specialities.Error.Message);
+                return;
+            }
+            
             _data.Specialities.Clear();
             foreach (var speciality in specialities.Result)
             {
                 _data.Specialities.Add(speciality);
             }
+            SelectParametrization.Visibility = Visibility.Visible;
+            StartJob.IsEnabled = true;
         }
     }
 }

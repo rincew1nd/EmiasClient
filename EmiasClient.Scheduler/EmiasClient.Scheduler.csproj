@@ -4,8 +4,16 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <!--
     <ItemGroup>
       <PackageReference Include="BaldurToolkit.Cron" Version="0.6.0" />
+    </ItemGroup>
+    -->
+
+    <ItemGroup>
+      <Reference Include="BaldurToolkit.Cron, Version=0.6.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\BaldurToolkit.Cron.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>

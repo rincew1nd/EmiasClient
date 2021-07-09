@@ -4,38 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmiasClient.Application.Windows"
+        xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Emias" Height="450" Width="800">
-    <Grid>
+        Title="Emias" Height="450" Width="700">
+    <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel x:Name="AuthorizationParameters" Grid.Row="0"
+                    Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label>Номер полиса</Label>
             <TextBox x:Name="OmsNumber" Text="{Binding OmsNumber, Mode=TwoWay}" Width="130"/>
             <Label>Дата рождения</Label>
             <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label>Специальность</Label>
-            <ListBox ItemsSource="{Binding Specialities}"
-                     SelectedValue="{Binding SelectedSpeciality}" 
-                     SelectedValuePath="Code"
-                     DisplayMemberPath="Name"/>
-            <Label>Время записи (от)</Label>
+        <Grid x:Name="SelectParametrization" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             
-            <Label>Время записи (до)</Label>
-        </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label>Специальность</Label>
+                <ComboBox ItemsSource="{Binding Specialities}"
+                          SelectedValue="{Binding SelectedSpeciality}" 
+                          SelectedValuePath="Code"
+                          DisplayMemberPath="Name"
+                          Width="200"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label>Время записи (от)</Label>
+                <extToolkit:TimePicker x:Name="MinAppointmentTime"
+                                       Format="Custom"
+                                       FormatString="HH:mm:ss"
+                                       Value="{Binding MinAppointmentTime, Mode=TwoWay}"
+                                       Width="100"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label>Время записи (до)</Label>
+                <extToolkit:TimePicker x:Name="MaxAppointmentTime"
+                                       Format="Custom"
+                                       FormatString="HH:mm:ss"
+                                       Value="{Binding MaxAppointmentTime, Mode=TwoWay}"
+                                       Width="100"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <CheckBox Content="Записывать автоматически" IsChecked="{Binding CreateRecord, Mode=TwoWay}"/>
+                <CheckBox Content="Сигнал" IsChecked="{Binding ToneNotification, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label>Записывать минимум через</Label>
+                <extToolkit:TimePicker x:Name="MinTimeSpan"
+                                       Format="Custom"
+                                       FormatString="HH:mm:ss"
+                                       Value="{Binding MinTimeSpan, Mode=TwoWay}"
+                                       Width="100"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label>Записывать максимум до</Label>
+                <extToolkit:TimePicker x:Name="MaxTimeSpan"
+                                       Format="Custom"
+                                       FormatString="HH:mm:ss"
+                                       Value="{Binding MaxTimeSpan, Mode=TwoWay}"
+                                       Width="100"/>
+            </StackPanel>
+        </Grid>
         <ScrollViewer Grid.Row="2">
             <TextBlock x:Name="Logs" Text="{Binding Logs}"/>
         </ScrollViewer>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="UpdateData" Click="UpdateData_click" Content="Обновить данные"/>
-            <Button x:Name="StartJob" Click="StartJob_click" Content="{Binding ButtonText, Mode=OneWay}"/>
+            <Button x:Name="UpdateData" Click="UpdateData_click" Content="Обновить данные" Padding="20 4"/>
+            <Button x:Name="StartJob" Click="StartJob_click" Content="{Binding ButtonText, Mode=OneWay}" Margin="30 0" Padding="20 4"/>
         </StackPanel>
     </Grid>
 </Window>

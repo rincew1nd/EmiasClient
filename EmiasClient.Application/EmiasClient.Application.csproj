@@ -11,4 +11,8 @@
       <ProjectReference Include="..\EmiasClient.Scheduler\EmiasClient.Scheduler.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+    </ItemGroup>
+
 </Project>
